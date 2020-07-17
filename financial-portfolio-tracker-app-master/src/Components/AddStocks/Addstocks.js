@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Addstocks.css';
-import AddFormModal from '../Form/AddFormModal/AddFormModal'
+import AddFormModal from '../Form/AddFormModal/AddFormModal';
 
 class Addstocks extends Component {
     constructor(props) {
