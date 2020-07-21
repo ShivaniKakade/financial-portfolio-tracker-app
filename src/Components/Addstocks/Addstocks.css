@@ -19,7 +19,7 @@ h2{
         list-style-type: none;
     }
     
-    .StockButton
+   .DisplayButton
     {
         height: 2.5rem;
         width:6rem;
@@ -28,7 +28,7 @@ h2{
         font-size: 20px;
         cursor: pointer;
         
-        }
+    }
         .StockButton:hover{
             background-color: rgb(47, 43, 43);
             color: aliceblue;
