@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './Addstocks.css';
-import AddFormModal from '../Form/AddFormModal/AddFormModal';
+import './AddStocks.css';
+import AddFormModal from '../Form/AddFormModal/AddFormModal'
 
-class Addstocks extends Component {
+class AddStocks extends Component {
     constructor(props) {
         super(props)
     
@@ -21,7 +21,7 @@ class Addstocks extends Component {
          myCompanies: props.companies,
          showModal:props.showModal,
          id:props.id, 
-         companyName:props.companyName,
+         companyName:props.companyName,  
          companySymbol:props.companySymbol
          
         };
@@ -31,7 +31,7 @@ class Addstocks extends Component {
         
         let companyArray=[];
         let showMessage="";
-            if(this.state.myCompanies.length>3)
+            if(this.state.myCompanies.length>0)
             {
             companyArray=this.state.myCompanies.map((item,index)=>{
              const {symbol,name}= item;//Destructuring
@@ -62,12 +62,12 @@ class Addstocks extends Component {
                 
                 <div className="AddStocksTitle" >
                 <h2>Add stocks to My stocks</h2>
-                {(this.state.myCompanies.length>0)?(this.state.myCompanies.length>3)?
+                {(this.state.myCompanies.length>0)?//(this.state.myCompanies.length>3)?
                 <ul id="companyList">
                 {companyArray}
                 </ul>
-                :<div >{showMessage}</div>
-                :<h1>Loading...</h1>}
+                :<div >{showMessage}</div>}
+               {/* // :<h1>Loading...</h1>} */}
                 
 
                 {(this.state.showModal)?
@@ -86,4 +86,4 @@ class Addstocks extends Component {
     }
 }
 
-export default Addstocks
+export default AddStocks;
