@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Header from '../Components/Header/Header';
-import Mystocks from '../Components/Mystocks/Mystocks';
-import Addstocks from '../Components/AddStocks/Addstocks';
+import Mystocks from '../Components/MyStocks/Mystocks';
+import Addstocks from '../Components/Addstocks/Addstocks';
 
  class Main extends Component {
      constructor(props) {
@@ -18,7 +18,7 @@ import Addstocks from '../Components/AddStocks/Addstocks';
      }
      //Initial retreival of stocks and companies
      componentDidMount(){
-        axios.get("https://finance-portfolio-tracke-11608.firebaseio.com/companies.json")
+        axios.get("https://finance-track-db582.firebaseio.com/company.json")
         .then((response)=>{
             const updatedCompanies = [];
              for (let key in response.data)
@@ -32,7 +32,7 @@ import Addstocks from '../Components/AddStocks/Addstocks';
         })
         .catch(error=>console.log(error));
 
-        axios.get("https://finance-portfolio-tracke-11608.firebaseio.com/mystocks.json")
+        axios.get("https://finance-track-db582.firebaseio.com/mystocks.json")
         .then((response)=>{
         if(response.data!=null)
          {  
@@ -52,7 +52,7 @@ import Addstocks from '../Components/AddStocks/Addstocks';
     //Function to get Final Stocks after addition.
     getFinalMystocks=()=>{
         console.log("Final myStocks update function called");
-        axios.get('https://finance-portfolio-tracke-11608.firebaseio.com/mystocks.json')
+        axios.get('https://finance-track-db582.firebaseio.com/mystocks.json')
             .then((response)=>{
                 const updatedMystocks = [];
                 for (let key in response.data)
@@ -68,7 +68,7 @@ import Addstocks from '../Components/AddStocks/Addstocks';
     //Function to get Final Companies after addition.        
     getFinalCompanies=()=>{
                 console.log("Final Companies update function called");
-                axios.get('https://finance-portfolio-tracke-11608.firebaseio.com/companies.json')
+                axios.get('https://finance-track-db582.firebaseio.com/company.json')
                 .then((response)=>{
                 const updatedCompanies  = [];
                 for (let key in response.data)
@@ -90,7 +90,7 @@ import Addstocks from '../Components/AddStocks/Addstocks';
         let companyName=this.state.myStocks[index]["Company_name"];
         let companySymbol=this.state.myStocks[index]["Company_Symbol"];
             //Adding deleted stock to Companies database
-            axios.post('https://finance-portfolio-tracke-11608.firebaseio.com/companies.json', {
+            axios.post('https://finance-track-db582.firebaseio.com/company.json', {
                 name:companyName,
                 symbol:companySymbol
                 })
@@ -103,7 +103,7 @@ import Addstocks from '../Components/AddStocks/Addstocks';
                 })
             .catch(error=>{console.log(error)})
             //Deleting stocks from my Stocks
-             axios.delete(`https://finance-portfolio-tracke-11608.firebaseio.com/mystocks/${id}.json`)
+             axios.delete(`https://finance-track-db582.firebaseio.com/mystocks/${id}.json`)
              .then((response)=>{
                 console.log(companySymbol,"Stock Deleted from Firebase");
                 if(response.statusText==="OK"){
@@ -143,7 +143,7 @@ import Addstocks from '../Components/AddStocks/Addstocks';
                     if(noofshares>0&&buyPrice.length>0&&buyDate.length>0)
                     {
                             //Adding stocks to my stocks
-                            axios.post('https://finance-portfolio-tracke-11608.firebaseio.com/mystocks.json', {
+                            axios.post('https://finance-track-db582.firebaseio.com/mystocks.json', {
                                 Company_Symbol:company_symbol,
                                 Company_name:company_name,
                                 No_of_Shares:noofshares,
@@ -160,7 +160,7 @@ import Addstocks from '../Components/AddStocks/Addstocks';
                             .catch(error=>console.log(error));
 
                             //Deleting Stocks from Companies 
-                            axios.delete(`https://finance-portfolio-tracke-11608.firebaseio.com/companies/${id}.json`)
+                            axios.delete(`https://finance-track-db582.firebaseio.com/company/${id}.json`)
                             .then((response)=>{
                             console.log(company_symbol,"Stock Deleted from Firebase");
                             if(response.statusText==="OK"){
